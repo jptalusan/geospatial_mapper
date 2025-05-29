@@ -50,14 +50,26 @@ While the `geojson` data should have the following features:
 
 
 # Usage
-
+As long as you have both the maprelease-osmconflation and maprelease-geojson for a particular area, then it should just work. It requires the county name.
 ```bash
   DATA_DIR = "./tests/data"
-  geojson_path = os.path.join(DATA_DIR, 'test.geojson')
-  csv_path = os.path.join(DATA_DIR, 'test.csv')
+  geojson_path = os.path.join(DATA_DIR, 'maprelease-geojson.geojson')
+  csv_path = os.path.join(DATA_DIR, 'maprelease-osmconflation.csv')
   county_name = ['CROCKETT']
   df = parallel(geojson_path, csv_path, county_name, threshold_distance=25)
 ```
+`df` should have a column named county for each of the specified county and then the mapping, see the following example.
+| Feature           | Type     | Example                                                                 |
+|-------------------|----------|-------------------------------------------------------------------------|
+| v                 | int      | 202619796                                                               |
+| key               | int      | 202705554                                                               |
+| osmid             | int      | 0                                                                       |
+| XDSegID           | int      | 19495638                                                                |
+| osm_geom          | geometry | LINESTRING (-9927715.889573382 4219197.2535342...)                     |
+| inrix_geom        | geometry | LINESTRING (-9927119.795074416 4219027.3303308...)                     |
+| distance          | float    | 0.000000                                                                |
+| within_threshold  | bool     | True                                                                    |
+
 
 # Development
 Test data might be proprietary but these are just the maprelease data from Inrix.
