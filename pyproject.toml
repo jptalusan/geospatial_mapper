@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "geo_mapper_api"
-version = "0.1.1"
+version = "0.1.2"
 description = "A simple API for matching geospatial data to OSM IDs"
 authors = [{ name="JP Talusan", email="jptalusan@gmail.com" }]
 readme = "README.md"

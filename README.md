@@ -1,5 +1,6 @@
 # Setup
-This requires `python>=3.9` but pretty specific versions of packages. If this fails, try to create a new virtual environment with python 3.9 specifically for this package.
+This requires `python>=3.9` but pretty specific versions of packages.
+> If this fails, try to create a new virtual environment with python 3.9 specifically for this package.
 ```
 pip install geo_mapper_api
 ```
@@ -58,7 +59,10 @@ As long as you have both the maprelease-osmconflation and maprelease-geojson for
   geojson_path = os.path.join(DATA_DIR, 'USA_Tennessee.geojson')
   csv_path = os.path.join(DATA_DIR, 'USA_Tennessee.csv')
   county_name = ['WILLIAMSON']
-  df = inrix_to_osm.parallel(geojson_path, csv_path, county_name, threshold_distance=25)
+
+  if __name__ == '__main__':
+    df = inrix_to_osm.parallel(geojson_path, csv_path, county_name, threshold_distance=25)
+    df.to_csv(f"{DATA_DIR}/williamson_county_tn_inrix_osm.csv", index=False)
 ```
 `df` should have a column named county for each of the specified county and then the mapping, see the following example.
 | Feature           | Type     | Example                                                                 |
