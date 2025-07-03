@@ -1,7 +1,7 @@
 # Setup
 This requires `python>=3.9` but pretty specific versions of packages. If this fails, try to create a new virtual environment with python 3.9 specifically for this package.
 ```
-pip install geospatial_mapper
+pip install geo_mapper_api
 ```
 
 # Requirements
@@ -52,11 +52,13 @@ While the `geojson` data should have the following features:
 # Usage
 As long as you have both the maprelease-osmconflation and maprelease-geojson for a particular area, then it should just work. It requires the county name.
 ```bash
-  DATA_DIR = "./tests/data"
-  geojson_path = os.path.join(DATA_DIR, 'maprelease-geojson.geojson')
-  csv_path = os.path.join(DATA_DIR, 'maprelease-osmconflation.csv')
-  county_name = ['CROCKETT']
-  df = parallel(geojson_path, csv_path, county_name, threshold_distance=25)
+  from geo_mapper_api import inrix_to_osm
+        
+  DATA_DIR = "./data"
+  geojson_path = os.path.join(DATA_DIR, 'USA_Tennessee.geojson')
+  csv_path = os.path.join(DATA_DIR, 'USA_Tennessee.csv')
+  county_name = ['WILLIAMSON']
+  df = inrix_to_osm.parallel(geojson_path, csv_path, county_name, threshold_distance=25)
 ```
 `df` should have a column named county for each of the specified county and then the mapping, see the following example.
 | Feature           | Type     | Example                                                                 |
